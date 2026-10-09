@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZoroMart - Login</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+/* =========================================================
+   ZOROMART - LUXURY LOGIN PAGE
+   BLACK & GOLD PREMIUM DESIGN
+========================================================= */
+
+/* =========================
+   PAGE BACKGROUND
+========================= */
+
+body {
+    background:
+        radial-gradient(circle at 15% 20%, rgba(212,175,55,0.12), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(212,175,55,0.08), transparent 30%),
+        linear-gradient(135deg, #050505, #0b0b0b 50%, #111111);
+    color: #f5f5f5;
+}
+
+
+/* =========================
+   LOGIN PAGE
+========================= */
+
+.login-page {
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 70px 20px;
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Luxury background glow */
+
+.login-page::before {
+    content: "";
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    background: rgba(212, 175, 55, 0.08);
+
+    border-radius: 50%;
+
+    filter: blur(90px);
+
+    top: 5%;
+    left: 10%;
+}
+
+.login-page::after {
+    content: "";
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    background: rgba(255, 193, 7, 0.06);
+
+    border-radius: 50%;
+
+    filter: blur(80px);
+
+    bottom: 5%;
+    right: 10%;
+}
+
+
+/* =========================
+   LOGIN CARD
+========================= */
+
+.login-card {
+    width: 100%;
+    max-width: 430px;
+
+    position: relative;
+    z-index: 2;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(28,28,28,0.98),
+            rgba(10,10,10,0.98)
+        );
+
+    padding: 42px;
+
+    border-radius: 24px;
+
+    border: 1px solid rgba(212,175,55,0.35);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.65),
+        0 0 35px rgba(212,175,55,0.08);
+
+    backdrop-filter: blur(15px);
+
+    transition: 0.4s ease;
+}
+
+.login-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(212,175,55,0.65);
+
+    box-shadow:
+        0 35px 90px rgba(0,0,0,0.75),
+        0 0 45px rgba(212,175,55,0.13);
+}
+
+
+/* =========================
+   GOLD TOP LINE
+========================= */
+
+.login-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 12%;
+
+    width: 76%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #d4af37,
+            #ffe58a,
+            #d4af37,
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px rgba(212,175,55,0.5);
+}
+
+
+/* =========================
+   LOGIN LOGO
+========================= */
+
+.login-logo {
+    text-align: center;
+
+    margin-bottom: 32px;
+}
+
+.login-logo .icon {
+    font-size: 48px;
+
+    margin-bottom: 8px;
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(212,175,55,0.55)
+        );
+}
+
+.login-logo h1 {
+    margin: 6px 0;
+
+    font-size: 31px;
+
+    font-weight: 900;
+
+    letter-spacing: -0.5px;
+
+    color: #ffffff;
+}
+
+.login-logo h1 span {
+    color: #d4af37;
+
+    text-shadow:
+        0 0 15px
+        rgba(212,175,55,0.25);
+}
+
+.login-logo p {
+    color: #999;
+
+    font-size: 13px;
+
+    margin-top: 8px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    margin-bottom: 19px;
+}
+
+.form-group label {
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    margin-bottom: 8px;
+
+    color: #d6d6d6;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.form-group input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 14px 15px;
+
+    background: #151515;
+
+    border: 1px solid #333;
+
+    color: #ffffff;
+
+    border-radius: 11px;
+
+    outline: none;
+
+    font-size: 14px;
+
+    transition: 0.3s ease;
+}
+
+.form-group input::placeholder {
+    color: #666;
+}
+
+.form-group input:hover {
+    border-color: #555;
+}
+
+.form-group input:focus {
+    border-color: #d4af37;
+
+    background: #181818;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(212,175,55,0.10),
+        0 0 18px
+        rgba(212,175,55,0.06);
+}
+
+
+/* =========================
+   PASSWORD
+========================= */
+
+.password-box {
+    position: relative;
+}
+
+.password-box input {
+    padding-right: 50px;
+}
+
+.show-password {
+    position: absolute;
+
+    right: 12px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    color: #d4af37;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition: 0.25s;
+}
+
+.show-password:hover {
+    transform:
+        translateY(-50%)
+        scale(1.15);
+
+    filter:
+        drop-shadow(
+            0 0 5px
+            rgba(212,175,55,0.5)
+        );
+}
+
+
+/* =========================
+   FORGOT PASSWORD
+========================= */
+
+.forgot-password {
+    text-align: right;
+
+    margin-top: -7px;
+
+    margin-bottom: 20px;
+}
+
+.forgot-password a {
+    color: #d4af37;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition: 0.3s;
+}
+
+.forgot-password a:hover {
+    color: #ffe58a;
+
+    text-shadow:
+        0 0 8px
+        rgba(212,175,55,0.4);
+}
+
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+.login-btn {
+    width: 100%;
+
+    border: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b8860b,
+            #d4af37,
+            #f5d76e,
+            #d4af37,
+            #b8860b
+        );
+
+    color: #080808;
+
+    padding: 15px;
+
+    border-radius: 11px;
+
+    font-size: 15px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    letter-spacing: 0.5px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(212,175,55,0.20);
+
+    transition: 0.35s ease;
+}
+
+.login-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 32px
+        rgba(212,175,55,0.35);
+
+    filter: brightness(1.08);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+    display: none;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    margin-bottom: 17px;
+}
+
+.message.error {
+    display: block;
+
+    background:
+        rgba(211,47,47,0.10);
+
+    color: #ff7777;
+
+    border:
+        1px solid
+        rgba(211,47,47,0.25);
+}
+
+.message.success {
+    display: block;
+
+    background:
+        rgba(33,136,56,0.10);
+
+    color: #70e08b;
+
+    border:
+        1px solid
+        rgba(33,136,56,0.25);
+}
+
+
+/* =========================
+   SIGNUP TEXT
+========================= */
+
+.signup-text {
+    text-align: center;
+
+    margin-top: 24px;
+
+    color: #888;
+
+    font-size: 13px;
+}
+
+.signup-text a {
+    color: #d4af37;
+
+    text-decoration: none;
+
+    font-weight: 800;
+
+    transition: 0.3s;
+}
+
+.signup-text a:hover {
+    color: #ffe58a;
+
+    text-shadow:
+        0 0 8px
+        rgba(212,175,55,0.4);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 550px) {
+
+    .login-page {
+        padding: 45px 15px;
+    }
+
+    .login-card {
+        padding: 30px 22px;
+
+        border-radius: 20px;
+    }
+
+    .login-logo .icon {
+        font-size: 42px;
+    }
+
+    .login-logo h1 {
+        font-size: 26px;
+    }
+
+}
+
+
+/* =========================
+   EXTRA SMALL DEVICES
+========================= */
+
+@media (max-width: 380px) {
+
+    .login-card {
+        padding: 25px 18px;
+    }
+
+    .login-logo h1 {
+        font-size: 24px;
+    }
+
+    .form-group input {
+        padding: 13px;
+    }
+
+    .login-btn {
+        padding: 14px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            <span>⚡</span>
+            ZoroMart
+        </div>
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="products.html">
+                Products
+            </a>
+
+            <a href="cart.html">
+                🛒 Cart
+            </a>
+
+            <a href="signup.html">
+                Sign Up
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- LOGIN -->
+
+    <main class="login-page">
+
+        <div class="login-card">
+
+
+            <div class="login-logo">
+
+                <div class="icon">
+                    ⚡
+                </div>
+
+                <h1>
+                    Welcome <span>Back</span>
+                </h1>
+
+                <p>
+                    Login to your ZoroMart account
+                </p>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div id="message" class="message"></div>
+
+
+            <!-- LOGIN FORM -->
+
+            <form id="loginForm">
+
+
+                <div class="form-group">
+                    <label for="role">Account Type</label>
+                    <select id="role" required style="width:100%;padding:14px 15px;background:#151515;border:1px solid #333;color:#fff;border-radius:11px;outline:none;">
+                        <option value="BUYER">Buyer</option>
+                        <option value="SELLER">Seller</option>
+                        <option value="ADMIN">Admin (seed account)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            required>
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            onclick="togglePassword()">
+
+                            👁️
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="forgot-password">
+
+                    <a href="#">
+                        Forgot Password?
+                    </a>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-btn">
+
+                    Login 🚀
+
+                </button>
+
+
+            </form>
+
+
+            <div class="signup-text">
+
+                Don't have an account?
+
+                <a href="signup.html">
+                    Create Account
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+
+                <h2>
+                    ⚡ ZoroMart
+                </h2>
+
+                <p>
+                    Smart Shopping. Better Choices.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="products.html">
+                    Products
+                </a>
+
+                <a href="cart.html">
+                    Cart
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Categories
+                </h3>
+
+                <a href="#">
+                    Electronics
+                </a>
+
+                <a href="#">
+                    Fashion
+                </a>
+
+                <a href="#">
+                    Gaming
+                </a>
+
+                <a href="#">
+                    Home
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Support
+                </h3>
+
+                <a href="#">
+                    Help Center
+                </a>
+
+                <a href="#">
+                    Contact Us
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 ZoroMart.
+            All Rights Reserved.
+
+        </div>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        /* =========================
+           SHOW / HIDE PASSWORD
+           ========================= */
+
+        function togglePassword() {
+
+            const password =
+                document.getElementById("password");
+
+            const button =
+                document.querySelector(".show-password");
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                button.innerText = "🙈";
+
+            } else {
+
+                password.type = "password";
+
+                button.innerText = "👁️";
+
+            }
+
+        }
+
+
+        /* =========================
+           MESSAGE
+           ========================= */
+
+        function showMessage(text, type) {
+
+            const message =
+                document.getElementById("message");
+
+            message.innerText = text;
+
+            message.className =
+                "message " + type;
+
+        }
+
+
+        /* =========================
+           LOGIN
+           ========================= */
+
+        document
+            .getElementById("loginForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim()
+                        .toLowerCase();
+
+
+                const password =
+                    document
+                        .getElementById("password")
+                        .value;
+                const selectedRole = document.getElementById("role").value;
+
+
+                /* GET USERS */
+
+                const users =
+                    JSON.parse(
+                        localStorage.getItem("zoroUsers")
+                    ) || [];
+
+
+                /* FIND USER */
+
+                let user = users.find(function(account) {
+                    return account.email === email && account.password === password && (account.role || "BUYER") === selectedRole;
+                });
+                // Front-end demo only. In the submitted Java app, seed this admin in H2 and authenticate on the server.
+                if (!user && selectedRole === "ADMIN" && email === "admin@zoromart.in" && password === "Admin@123") {
+                    user = { id: "ADMIN-SEED", name: "ZoroMart Admin", email, role: "ADMIN" };
+                }
+
+
+                /* WRONG LOGIN */
+
+                if (!user) {
+
+                    showMessage(
+                        "Invalid email or password.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                /* SAVE LOGGED-IN USER */
+
+                localStorage.setItem(
+                    "zoroCurrentUser",
+                    JSON.stringify(user)
+                );
+
+
+                /* SUCCESS */
+
+                showMessage(
+                    "Login successful! Welcome " +
+                    user.name +
+                    " 🎉",
+                    "success"
+                );
+
+
+                /* GO TO USER HOME */
+
+                setTimeout(function() {
+
+                    window.location.href = user.role === "ADMIN" ? "admin-dashboard.html" : user.role === "SELLER" ? "seller-dashboard.html" : "user-home.html";
+
+                }, 1000);
+
+            });
+
+    </script>
+
+</body>
+
+</html>
