@@ -1,0 +1,2 @@
+-- Admin account is created safely by DatabaseInitializer using BCrypt.
+-- Demo products can be added by a SELLER account through the UI/API.

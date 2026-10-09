@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ZoroMart - Checkout</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        body {
+            background: #08090c;
+        }
+
+        .checkout-page {
+            padding: 45px 6%;
+            min-height: 650px;
+        }
+
+        .checkout-heading {
+            margin-bottom: 30px;
+        }
+
+        .checkout-heading p {
+            color: #d4af37;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .checkout-heading h1 {
+            margin: 5px 0;
+            font-size: 36px;
+        }
+
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .checkout-left {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .checkout-card {
+            background: #141416;
+            border: 1px solid #2b2b30;
+            border-radius: 16px;
+            padding: 25px;
+        }
+
+        .checkout-card h2 {
+            margin-top: 0;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            width: 30px;
+            height: 30px;
+            align-items: center;
+            justify-content: center;
+            background: #d4af37;
+            color: white;
+            border-radius: 50%;
+            margin-right: 8px;
+            font-size: 13px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px;
+            border: 1px solid #38383d;
+            border-radius: 9px;
+            outline: none;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #d4af37;
+            box-shadow:
+                0 0 0 3px
+                rgba(255, 107, 0, 0.08);
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .payment-option {
+            border: 1px solid #38383d;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .payment-option:hover {
+            border-color: #d4af37;
+        }
+
+        .payment-option input {
+            accent-color: #d4af37;
+        }
+
+        .payment-icon {
+            font-size: 25px;
+        }
+
+        .payment-info strong {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .payment-info span {
+            color: #a1a1aa;
+            font-size: 11px;
+        }
+
+        .summary {
+            background: #141416;
+            border: 1px solid #2b2b30;
+            border-radius: 16px;
+            padding: 25px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+            font-size: 13px;
+        }
+
+        .summary-item span:first-child {
+            color: #a1a1aa;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 12px 0;
+            color: #a1a1aa;
+        }
+
+        .summary-total {
+            border-top: 1px solid #333;
+            margin-top: 15px;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .place-order-btn {
+            width: 100%;
+            border: none;
+            background: #d4af37;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .place-order-btn:hover {
+            background: #b8860b;
+        }
+
+        .secure-text {
+            text-align: center;
+            color: #a1a1aa;
+            font-size: 11px;
+            margin-top: 12px;
+        }
+
+        /* =========================
+           SUCCESS
+           ========================= */
+
+        .success-screen {
+            display: none;
+            min-height: 600px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .success-box {
+            background: #141416;
+            padding: 50px 30px;
+            border-radius: 20px;
+            border: 1px solid #2b2b30;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .success-icon {
+            font-size: 70px;
+        }
+
+        .success-box h1 {
+            margin: 15px 0 8px;
+        }
+
+        .success-box p {
+            color: #a1a1aa;
+            font-size: 14px;
+        }
+
+        .order-id-success {
+            background: #fff5ed;
+            color: #d4af37;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: 800;
+        }
+
+        .success-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .success-buttons a {
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 9px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .primary-btn {
+            background: #d4af37;
+            color: white;
+        }
+
+        .secondary-btn {
+            border: 1px solid #38383d;
+            color: #f1f1f1;
+        }
+
+        @media (max-width: 850px) {
+
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .summary {
+                position: static;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .checkout-page {
+                padding: 30px 5%;
+            }
+
+            .checkout-heading h1 {
+                font-size: 29px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .checkout-card {
+                padding: 20px;
+            }
+
+            .success-buttons {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+
+            <span>⚡</span>
+
+            ZoroMart
+
+        </div>
+
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="products.html">
+                Products
+            </a>
+
+            <a href="cart.html">
+                🛒 Cart
+            </a>
+
+            <a href="user-home.html">
+                👤 Account
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         CHECKOUT PAGE
+         ========================= -->
+
+    <main class="checkout-page"
+          id="checkoutPage">
+
+
+        <div class="checkout-heading">
+
+            <p>
+                SECURE CHECKOUT
+            </p>
+
+            <h1>
+                Complete Your Order 🛍️
+            </h1>
+
+        </div>
+
+
+        <div class="checkout-layout">
+
+
+            <!-- LEFT -->
+
+            <div class="checkout-left">
+
+
+                <!-- ADDRESS -->
+
+                <div class="checkout-card">
+
+                    <h2>
+
+                        <span class="step-number">
+                            1
+                        </span>
+
+                        Delivery Address
+
+                    </h2>
+
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="fullName"
+                                placeholder="Enter your name"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                maxlength="10"
+                                placeholder="10-digit phone number"
+                                required>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Address
+                        </label>
+
+                        <textarea
+                            id="address"
+                            placeholder="House No, Street, Area"
+                            required></textarea>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+                            <label>
+                                City
+                            </label>
+
+                            <input
+                                type="text"
+                                id="city"
+                                placeholder="City"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Pincode
+                            </label>
+
+                            <input
+                                type="text"
+                                id="pincode"
+                                maxlength="6"
+                                placeholder="6-digit pincode"
+                                required>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            State
+                        </label>
+
+                        <select id="state">
+
+                            <option value="">
+                                Select State
+                            </option>
+
+                            <option>
+                                Tamil Nadu
+                            </option>
+
+                            <option>
+                                Kerala
+                            </option>
+
+                            <option>
+                                Karnataka
+                            </option>
+
+                            <option>
+                                Andhra Pradesh
+                            </option>
+
+                            <option>
+                                Telangana
+                            </option>
+
+                            <option>
+                                Maharashtra
+                            </option>
+
+                            <option>
+                                Delhi
+                            </option>
+
+                            <option>
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PAYMENT -->
+
+                <div class="checkout-card">
+
+                    <h2>
+
+                        <span class="step-number">
+                            2
+                        </span>
+
+                        Payment Method
+
+                    </h2>
+
+
+                    <div class="payment-options">
+
+
+                        <label class="payment-option">
+
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="UPI"
+                                checked>
+
+                            <div class="payment-icon">
+                                📱
+                            </div>
+
+                            <div class="payment-info">
+
+                                <strong>
+                                    UPI
+                                </strong>
+
+                                <span>
+                                    Google Pay, PhonePe,
+                                    Paytm and more
+                                </span>
+
+                            </div>
+
+                        </label>
+
+
+                        <label class="payment-option">
+
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="Card">
+
+                            <div class="payment-icon">
+                                💳
+                            </div>
+
+                            <div class="payment-info">
+
+                                <strong>
+                                    Credit / Debit Card
+                                </strong>
+
+                                <span>
+                                    Secure card payment
+                                </span>
+
+                            </div>
+
+                        </label>
+
+
+                        <label class="payment-option">
+
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="COD">
+
+                            <div class="payment-icon">
+                                💵
+                            </div>
+
+                            <div class="payment-info">
+
+                                <strong>
+                                    Cash on Delivery
+                                </strong>
+
+                                <span>
+                                    Pay when your order arrives
+                                </span>
+
+                            </div>
+
+                        </label>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- RIGHT SUMMARY -->
+
+            <div class="summary">
+
+                <h2>
+                    Order Summary
+                </h2>
+
+
+                <div id="summaryItems">
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <span id="subtotal">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Delivery
+                    </span>
+
+                    <span id="delivery">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Discount
+                    </span>
+
+                    <span id="discount">
+                        - ₹0
+                    </span>
+
+                </div>
+
+
+                <div class="summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span id="total">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="place-order-btn"
+                    onclick="placeOrder()">
+
+                    Place Order 🚀
+
+                </button>
+
+
+                <div class="secure-text">
+
+                    🔒 Your order information is secure
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================
+         SUCCESS SCREEN
+         ========================= -->
+
+    <section
+        class="success-screen"
+        id="successScreen">
+
+
+        <div class="success-box">
+
+            <div class="success-icon">
+                🎉
+            </div>
+
+            <h1>
+                Order Placed Successfully!
+            </h1>
+
+            <p>
+                Thank you for shopping with ZoroMart.
+            </p>
+
+
+            <div
+                class="order-id-success"
+                id="successOrderId">
+
+                Order ID: -
+
+            </div>
+
+
+            <p>
+                Your order has been placed and
+                will be delivered soon.
+            </p>
+
+
+            <div class="success-buttons">
+
+                <a
+                    href="orders.html"
+                    class="primary-btn">
+
+                    View My Orders
+
+                </a>
+
+
+                <a
+                    href="products.html"
+                    class="secondary-btn">
+
+                    Continue Shopping
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+
+                <h2>
+                    ⚡ ZoroMart
+                </h2>
+
+                <p>
+                    Smart Shopping.
+                    Better Choices.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="products.html">
+                    Products
+                </a>
+
+                <a href="cart.html">
+                    Cart
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Categories
+                </h3>
+
+                <a href="#">
+                    Electronics
+                </a>
+
+                <a href="#">
+                    Fashion
+                </a>
+
+                <a href="#">
+                    Gaming
+                </a>
+
+                <a href="#">
+                    Home
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Support
+                </h3>
+
+                <a href="#">
+                    Help Center
+                </a>
+
+                <a href="#">
+                    Contact Us
+                </a>
+
+                <a href="#">
+                    Privacy Policy
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 ZoroMart.
+            All Rights Reserved.
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+         ========================= -->
+
+    <script>
+
+
+        /* =========================
+           CHECK LOGIN
+           ========================= */
+
+        const currentUser =
+            JSON.parse(
+                localStorage.getItem(
+                    "zoroCurrentUser"
+                )
+            );
+
+
+        if (!currentUser) {
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+
+        /* =========================
+           GET CART
+           ========================= */
+
+        let cart =
+            JSON.parse(
+                localStorage.getItem(
+                    "zoroCart"
+                )
+            ) || [];
+
+
+        if (cart.length === 0) {
+
+            alert(
+                "Your cart is empty!"
+            );
+
+            window.location.href =
+                "products.html";
+
+        }
+
+
+
+        /* =========================
+           USER DETAILS
+           ========================= */
+
+        if (currentUser) {
+
+            document.getElementById(
+                "fullName"
+            ).value =
+                currentUser.name || "";
+
+
+            document.getElementById(
+                "phone"
+            ).value =
+                currentUser.phone || "";
+
+        }
+
+
+
+        /* =========================
+           CALCULATE TOTAL
+           ========================= */
+
+        let subtotal = 0;
+
+
+        cart.forEach(
+            function(product) {
+
+                subtotal +=
+                    product.price *
+                    product.quantity;
+
+            }
+        );
+
+
+        const delivery =
+            subtotal >= 1000
+                ? 0
+                : 49;
+
+
+        const discount =
+            subtotal >= 5000
+                ? Math.round(
+                    subtotal * 0.10
+                )
+                : 0;
+
+
+        const total =
+            subtotal +
+            delivery -
+            discount;
+
+
+
+        /* =========================
+           DISPLAY ITEMS
+           ========================= */
+
+        const summaryItems =
+            document.getElementById(
+                "summaryItems"
+            );
+
+
+        cart.forEach(
+            function(product) {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "summary-item";
+
+
+                item.innerHTML = `
+
+                    <span>
+                        ${product.name}
+                        × ${product.quantity}
+                    </span>
+
+                    <strong>
+                        ₹${(
+                            product.price *
+                            product.quantity
+                        ).toLocaleString("en-IN")}
+                    </strong>
+
+                `;
+
+
+                summaryItems.appendChild(item);
+
+            }
+        );
+
+
+
+        /* =========================
+           DISPLAY TOTALS
+           ========================= */
+
+        document.getElementById(
+            "subtotal"
+        ).innerText =
+            "₹" +
+            subtotal.toLocaleString(
+                "en-IN"
+            );
+
+
+        document.getElementById(
+            "delivery"
+        ).innerText =
+            delivery === 0
+                ? "FREE"
+                : "₹" + delivery;
+
+
+        document.getElementById(
+            "discount"
+        ).innerText =
+            "- ₹" +
+            discount.toLocaleString(
+                "en-IN"
+            );
+
+
+        document.getElementById(
+            "total"
+        ).innerText =
+            "₹" +
+            total.toLocaleString(
+                "en-IN"
+            );
+
+
+
+        /* =========================
+           PLACE ORDER
+           ========================= */
+
+        function placeOrder() {
+
+
+            /* ADDRESS */
+
+            const fullName =
+                document
+                    .getElementById("fullName")
+                    .value
+                    .trim();
+
+
+            const phone =
+                document
+                    .getElementById("phone")
+                    .value
+                    .trim();
+
+
+            const address =
+                document
+                    .getElementById("address")
+                    .value
+                    .trim();
+
+
+            const city =
+                document
+                    .getElementById("city")
+                    .value
+                    .trim();
+
+
+            const pincode =
+                document
+                    .getElementById("pincode")
+                    .value
+                    .trim();
+
+
+            const state =
+                document
+                    .getElementById("state")
+                    .value;
+
+
+            const payment =
+                document.querySelector(
+                    'input[name="payment"]:checked'
+                ).value;
+
+
+
+            /* =========================
+               VALIDATION
+               ========================= */
+
+            if (!fullName) {
+
+                alert(
+                    "Please enter your name."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !/^[0-9]{10}$/.test(phone)
+            ) {
+
+                alert(
+                    "Please enter a valid 10-digit phone number."
+                );
+
+                return;
+
+            }
+
+
+            if (!address) {
+
+                alert(
+                    "Please enter your address."
+                );
+
+                return;
+
+            }
+
+
+            if (!city) {
+
+                alert(
+                    "Please enter your city."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !/^[0-9]{6}$/.test(pincode)
+            ) {
+
+                alert(
+                    "Please enter a valid 6-digit pincode."
+                );
+
+                return;
+
+            }
+
+
+            if (!state) {
+
+                alert(
+                    "Please select your state."
+                );
+
+                return;
+
+            }
+
+
+
+            /* =========================
+               CREATE ORDER
+               ========================= */
+
+            const order = {
+
+                orderId:
+                    "ZM" +
+                    Date.now(),
+
+                userId:
+                    currentUser.id,
+
+                customerName:
+                    fullName,
+
+                phone:
+                    phone,
+
+                address:
+                    address +
+                    ", " +
+                    city +
+                    ", " +
+                    state +
+                    " - " +
+                    pincode,
+
+                paymentMethod:
+                    payment,
+
+                items:
+                    cart,
+
+                subtotal:
+                    subtotal,
+
+                delivery:
+                    delivery,
+
+                discount:
+                    discount,
+
+                total:
+                    total,
+
+                status:
+                    "Order Placed",
+
+                date:
+                    new Date().toISOString()
+
+            };
+
+
+
+            /* =========================
+               GET OLD ORDERS
+               ========================= */
+
+            let orders =
+                JSON.parse(
+                    localStorage.getItem(
+                        "zoroOrders"
+                    )
+                ) || [];
+
+
+            /* ADD NEW ORDER */
+
+            orders.push(order);
+
+
+            /* SAVE ORDERS */
+
+            localStorage.setItem(
+                "zoroOrders",
+                JSON.stringify(orders)
+            );
+
+
+
+            /* =========================
+               CLEAR CART
+               ========================= */
+
+            localStorage.removeItem(
+                "zoroCart"
+            );
+
+
+
+            /* =========================
+               SHOW SUCCESS
+               ========================= */
+
+            document.getElementById(
+                "checkoutPage"
+            ).style.display =
+                "none";
+
+
+            document.getElementById(
+                "successScreen"
+            ).style.display =
+                "flex";
+
+
+            document.getElementById(
+                "successOrderId"
+            ).innerText =
+                "Order ID: " +
+                order.orderId;
+
+        }
+
+    </script>
+
+<script src="backend.js"></script></body>
+
+</html>

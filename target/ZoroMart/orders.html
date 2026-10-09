@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ZoroMart - My Orders</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+/* =========================================
+   ZOROMART - LUXURY ORDERS PAGE CSS
+   BLACK + GOLD PREMIUM THEME
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(212, 175, 55, 0.10),
+            transparent 38%
+        ),
+        #08080b;
+    color: #f1f5f9;
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   LINKS
+========================================= */
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+    width: 100%;
+    min-height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 16px 6%;
+
+    background: rgba(10, 10, 13, 0.90);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.55);
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+    font-family: Georgia, 'Times New Roman', serif;
+
+    font-size: 27px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color: #ffffff;
+
+    white-space: nowrap;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 25%,
+            #f5d76e 55%,
+            #b8860b 100%
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow:
+        0 0 25px rgba(212, 175, 55, 0.12);
+}
+
+.logo span {
+    font-size: 24px;
+    -webkit-text-fill-color: initial;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav a {
+    color: #a1a1aa;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+
+    transition: all 0.3s ease;
+
+    position: relative;
+}
+
+.nav a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -7px;
+
+    width: 0;
+    height: 1px;
+
+    background: #d4af37;
+
+    transition: width 0.3s ease;
+}
+
+.nav a:hover {
+    color: #d4af37;
+
+    text-shadow:
+        0 0 12px rgba(212, 175, 55, 0.35);
+}
+
+.nav a:hover::after {
+    width: 100%;
+}
+
+
+/* =========================================
+   ORDERS PAGE
+========================================= */
+
+.orders-page {
+    width: 90%;
+    max-width: 1400px;
+
+    margin: auto;
+
+    padding: 65px 0 80px;
+
+    min-height: 650px;
+}
+
+
+/* =========================================
+   PAGE HEADING
+========================================= */
+
+.page-heading {
+    margin-bottom: 42px;
+
+    padding-bottom: 28px;
+
+    border-bottom:
+        1px solid rgba(212, 175, 55, 0.12);
+}
+
+.page-heading p {
+    color: #d4af37;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 10px;
+}
+
+.page-heading h1 {
+    margin: 0 0 10px;
+
+    font-family: Georgia, 'Times New Roman', serif;
+
+    font-size: 42px;
+    font-weight: 700;
+
+    color: #ffffff;
+
+    letter-spacing: 0.5px;
+
+    text-shadow:
+        0 0 25px rgba(255, 255, 255, 0.05);
+}
+
+.page-heading span {
+    color: #71717a;
+
+    font-size: 13px;
+
+    font-weight: 400;
+}
+
+
+/* =========================================
+   ORDERS CONTAINER
+========================================= */
+
+.orders-container {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+}
+
+
+/* =========================================
+   ORDER CARD
+========================================= */
+
+.order-card {
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(28, 28, 34, 0.82),
+            rgba(14, 14, 18, 0.92)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.35);
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+/* GOLD LIGHT EFFECT */
+
+.order-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(212, 175, 55, 0.55),
+            transparent
+        );
+
+    opacity: 0;
+
+    transition: opacity 0.35s ease;
+}
+
+.order-card:hover {
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(212, 175, 55, 0.28);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.55),
+        0 0 25px rgba(212, 175, 55, 0.06);
+}
+
+.order-card:hover::before {
+    opacity: 1;
+}
+
+
+/* =========================================
+   ORDER TOP
+========================================= */
+
+.order-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding-bottom: 18px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.07);
+}
+
+.order-id {
+    font-size: 14px;
+
+    font-weight: 800;
+
+    color: #f5f5f5;
+
+    letter-spacing: 0.3px;
+}
+
+.order-date {
+    color: #71717a;
+
+    font-size: 12px;
+
+    margin-top: 6px;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.status {
+    padding: 8px 15px;
+
+    border-radius: 30px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.4px;
+
+    border: 1px solid transparent;
+}
+
+.status.placed {
+    background:
+        rgba(212, 175, 55, 0.10);
+
+    color: #d4af37;
+
+    border-color:
+        rgba(212, 175, 55, 0.25);
+}
+
+.status.shipped {
+    background:
+        rgba(40, 120, 216, 0.10);
+
+    color: #65a9ff;
+
+    border-color:
+        rgba(40, 120, 216, 0.25);
+}
+
+.status.delivered {
+    background:
+        rgba(33, 136, 56, 0.10);
+
+    color: #5ee58a;
+
+    border-color:
+        rgba(33, 136, 56, 0.25);
+}
+
+.status.cancelled {
+    background:
+        rgba(211, 47, 47, 0.10);
+
+    color: #ff6b6b;
+
+    border-color:
+        rgba(211, 47, 47, 0.25);
+}
+
+
+/* =========================================
+   ORDER PRODUCTS
+========================================= */
+
+.order-products {
+    margin-top: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+/* =========================================
+   PRODUCT
+========================================= */
+
+.order-product {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 14px;
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.045);
+
+    border-radius: 12px;
+
+    transition: all 0.3s ease;
+}
+
+.order-product:hover {
+    background:
+        rgba(212, 175, 55, 0.035);
+
+    border-color:
+        rgba(212, 175, 55, 0.14);
+}
+
+
+/* =========================================
+   PRODUCT ICON
+========================================= */
+
+.product-icon {
+    width: 62px;
+    height: 62px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #202027,
+            #101014
+        );
+
+    border:
+        1px solid rgba(212, 175, 55, 0.14);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 27px;
+
+    flex-shrink: 0;
+
+    box-shadow:
+        inset 0 0 20px rgba(212, 175, 55, 0.025);
+}
+
+
+/* =========================================
+   PRODUCT INFO
+========================================= */
+
+.product-info {
+    flex: 1;
+}
+
+.product-info h3 {
+    margin: 0 0 6px;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    color: #f1f5f9;
+}
+
+.product-info p {
+    margin: 0;
+
+    color: #71717a;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   PRODUCT PRICE
+========================================= */
+
+.product-price {
+    font-weight: 800;
+
+    font-size: 15px;
+
+    color: #d4af37;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   ORDER BOTTOM
+========================================= */
+
+.order-bottom {
+    margin-top: 20px;
+
+    padding-top: 18px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+.delivery-info {
+    color: #71717a;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+.total-price {
+    font-size: 21px;
+
+    font-weight: 900;
+
+    color: #ffffff;
+
+    white-space: nowrap;
+}
+
+.total-price::first-letter {
+    color: #d4af37;
+}
+
+
+/* =========================================
+   EMPTY ORDERS
+========================================= */
+
+.empty-orders {
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25, 25, 31, 0.9),
+            rgba(12, 12, 15, 0.95)
+        );
+
+    border:
+        1px solid rgba(212, 175, 55, 0.14);
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.empty-orders .icon {
+    font-size: 65px;
+
+    margin-bottom: 10px;
+
+    filter:
+        drop-shadow(
+            0 0 15px rgba(212, 175, 55, 0.15)
+        );
+}
+
+.empty-orders h2 {
+    margin: 12px 0 7px;
+
+    font-family: Georgia, serif;
+
+    font-size: 25px;
+
+    color: #ffffff;
+}
+
+.empty-orders p {
+    color: #71717a;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   SHOP BUTTON
+========================================= */
+
+.shop-btn {
+    display: inline-block;
+
+    margin-top: 24px;
+
+    padding: 13px 27px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d4af37,
+            #aa7c11
+        );
+
+    color: #050505;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+
+    box-shadow:
+        0 8px 25px rgba(212, 175, 55, 0.18);
+
+    transition: all 0.3s ease;
+}
+
+.shop-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(212, 175, 55, 0.30);
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1d36a,
+            #c49418
+        );
+}
+
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.back-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    margin-top: 28px;
+
+    color: #a1a1aa;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    color: #d4af37;
+
+    transform: translateX(-4px);
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    background:
+        linear-gradient(
+            180deg,
+            #0b0b0e,
+            #050507
+        );
+
+    border-top:
+        1px solid rgba(212, 175, 55, 0.12);
+
+    color: #71717a;
+
+    margin-top: 30px;
+}
+
+.footer-content {
+    width: 90%;
+    max-width: 1400px;
+
+    margin: auto;
+
+    padding: 65px 0;
+
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr 1fr;
+
+    gap: 45px;
+}
+
+
+/* FOOTER BRAND */
+
+.footer-brand h2 {
+    font-family: Georgia, serif;
+
+    color: #ffffff;
+
+    font-size: 24px;
+
+    margin-bottom: 12px;
+
+    letter-spacing: 1px;
+}
+
+.footer-brand p {
+    color: #71717a;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    max-width: 280px;
+}
+
+
+/* FOOTER HEADINGS */
+
+.footer-content h3 {
+    color: #ffffff;
+
+    font-size: 14px;
+
+    margin-bottom: 18px;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* FOOTER LINKS */
+
+.footer-content a {
+    display: block;
+
+    color: #71717a;
+
+    margin-bottom: 12px;
+
+    font-size: 13px;
+
+    transition: all 0.3s ease;
+}
+
+.footer-content a:hover {
+    color: #d4af37;
+
+    transform: translateX(4px);
+}
+
+
+/* =========================================
+   COPYRIGHT
+========================================= */
+
+.copyright {
+    text-align: center;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.05);
+
+    padding: 22px;
+
+    color: #52525b;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #08080b;
+}
+
+::-webkit-scrollbar-thumb {
+    background:
+        linear-gradient(
+            #d4af37,
+            #8c6a16
+        );
+
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #f1c84b;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .header {
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 18px;
+    }
+
+    .nav {
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 20px;
+    }
+
+    .footer-content {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .header {
+        padding: 18px 5%;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .nav {
+        gap: 15px;
+    }
+
+    .nav a {
+        font-size: 11px;
+    }
+
+    .orders-page {
+        width: 90%;
+
+        padding:
+            40px 0 60px;
+    }
+
+    .page-heading h1 {
+        font-size: 31px;
+    }
+
+    .page-heading p {
+        letter-spacing: 3px;
+    }
+
+    .order-top {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .status {
+        align-self: flex-start;
+    }
+
+    .order-bottom {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .total-price {
+        font-size: 19px;
+    }
+
+    .order-product {
+        align-items: flex-start;
+    }
+
+    .product-price {
+        margin-left: auto;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+
+        gap: 30px;
+    }
+
+    .footer-brand p {
+        margin: auto;
+    }
+
+    .footer-content a:hover {
+        transform: none;
+    }
+}
+
+
+@media (max-width: 420px) {
+
+    .orders-page {
+        width: 92%;
+    }
+
+    .page-heading h1 {
+        font-size: 27px;
+    }
+
+    .order-card {
+        padding: 18px;
+    }
+
+    .product-icon {
+        width: 52px;
+        height: 52px;
+
+        font-size: 23px;
+    }
+
+    .product-info h3 {
+        font-size: 13px;
+    }
+
+    .product-price {
+        font-size: 13px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            <span>⚡</span>
+            ZoroMart
+        </div>
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="products.html">
+                Products
+            </a>
+
+            <a href="cart.html">
+                🛒 Cart
+            </a>
+
+            <a href="user-home.html">
+                👤 Account
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ORDERS -->
+
+    <main class="orders-page">
+
+        <div class="page-heading">
+
+            <p>
+                ORDER HISTORY
+            </p>
+
+            <h1>
+                My Orders 📦
+            </h1>
+
+            <span>
+                Track and manage your ZoroMart orders
+            </span>
+
+        </div>
+
+
+        <div
+            id="ordersContainer"
+            class="orders-container">
+
+        </div>
+
+
+        <a
+            href="user-home.html"
+            class="back-btn">
+
+            ← Back to My Account
+
+        </a>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+
+                <h2>
+                    ⚡ ZoroMart
+                </h2>
+
+                <p>
+                    Smart Shopping. Better Choices.
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="products.html">
+                    Products
+                </a>
+
+                <a href="cart.html">
+                    Cart
+                </a>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Categories
+                </h3>
+
+                <a href="#">
+                    Electronics
+                </a>
+
+                <a href="#">
+                    Fashion
+                </a>
+
+                <a href="#">
+                    Gaming
+                </a>
+
+                <a href="#">
+                    Home
+                </a>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Support
+                </h3>
+
+                <a href="#">
+                    Help Center
+                </a>
+
+                <a href="#">
+                    Contact Us
+                </a>
+
+                <a href="#">
+                    Privacy Policy
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+
+            © 2026 ZoroMart.
+            All Rights Reserved.
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        /* =========================
+           CHECK LOGIN
+           ========================= */
+
+        const currentUser =
+            JSON.parse(
+                localStorage.getItem(
+                    "zoroCurrentUser"
+                )
+            );
+
+
+        if (!currentUser) {
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        /* =========================
+           LOAD ORDERS
+           ========================= */
+
+        function loadOrders() {
+
+            const container =
+                document.getElementById(
+                    "ordersContainer"
+                );
+
+
+            let orders =
+                JSON.parse(
+                    localStorage.getItem(
+                        "zoroOrders"
+                    )
+                ) || [];
+
+
+            /*
+               Show only current user's orders
+            */
+
+            orders =
+                orders.filter(
+                    function(order) {
+
+                        return (
+                            order.userId ===
+                            currentUser.id
+                        );
+
+                    }
+                );
+
+
+            container.innerHTML = "";
+
+
+            /* =========================
+               NO ORDERS
+               ========================= */
+
+            if (orders.length === 0) {
+
+                container.innerHTML = `
+
+                    <div class="empty-orders">
+
+                        <div class="icon">
+                            📦
+                        </div>
+
+                        <h2>
+                            No Orders Yet
+                        </h2>
+
+                        <p>
+                            You haven't placed
+                            any orders yet.
+                        </p>
+
+                        <a
+                            href="products.html"
+                            class="shop-btn">
+
+                            Start Shopping →
+
+                        </a>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            /* =========================
+               DISPLAY ORDERS
+               ========================= */
+
+            orders
+                .slice()
+                .reverse()
+                .forEach(
+                    function(order) {
+
+                        const card =
+                            document.createElement(
+                                "div"
+                            );
+
+                        card.className =
+                            "order-card";
+
+
+                        let productsHTML = "";
+
+
+                        order.items.forEach(
+                            function(product) {
+
+                                productsHTML += `
+
+                                    <div class="order-product">
+
+                                        <div class="product-icon">
+                                            🛍️
+                                        </div>
+
+                                        <div class="product-info">
+
+                                            <h3>
+                                                ${product.name}
+                                            </h3>
+
+                                            <p>
+                                                Quantity:
+                                                ${product.quantity}
+                                            </p>
+
+                                        </div>
+
+                                        <div class="product-price">
+
+                                            ₹${(
+                                                product.price *
+                                                product.quantity
+                                            ).toLocaleString("en-IN")}
+
+                                        </div>
+
+                                    </div>
+
+                                `;
+
+                            }
+                        );
+
+
+                        const status =
+                            order.status ||
+                            "Order Placed";
+
+
+                        const statusClass =
+                            status
+                                .toLowerCase()
+                                .replace(
+                                    " ",
+                                    "-"
+                                );
+
+
+                        card.innerHTML = `
+
+                            <div class="order-top">
+
+                                <div>
+
+                                    <div class="order-id">
+
+                                        Order ID:
+                                        ${order.orderId}
+
+                                    </div>
+
+                                    <div class="order-date">
+
+                                        ${formatDate(
+                                            order.date
+                                        )}
+
+                                    </div>
+
+                                </div>
+
+
+                                <div
+                                    class="status ${statusClass}">
+
+                                    ${getStatusIcon(status)}
+                                    ${status}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="order-products">
+
+                                ${productsHTML}
+
+                            </div>
+
+
+                            <div class="order-bottom">
+
+                                <div class="delivery-info">
+
+                                    📍
+                                    Delivery to:
+                                    ${order.address || "Your Address"}
+
+                                </div>
+
+                                <div class="total-price">
+
+                                    Total:
+                                    ₹${Number(
+                                        order.total
+                                    ).toLocaleString("en-IN")}
+
+                                </div>
+
+                            </div>
+
+                        `;
+
+
+                        container.appendChild(card);
+
+                    }
+                );
+
+        }
+
+
+        /* =========================
+           FORMAT DATE
+           ========================= */
+
+        function formatDate(date) {
+
+            if (!date) {
+
+                return "Date unavailable";
+
+            }
+
+
+            const d =
+                new Date(date);
+
+
+            return d.toLocaleDateString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+        /* =========================
+           STATUS ICON
+           ========================= */
+
+        function getStatusIcon(status) {
+
+            if (
+                status === "Delivered"
+            ) {
+
+                return "✅";
+
+            }
+
+
+            if (
+                status === "Shipped"
+            ) {
+
+                return "🚚";
+
+            }
+
+
+            if (
+                status === "Cancelled"
+            ) {
+
+                return "❌";
+
+            }
+
+
+            return "🕐";
+
+        }
+
+
+        /* =========================
+           LOAD
+           ========================= */
+
+        loadOrders();
+
+    </script>
+
+<script src="backend.js"></script></body>
+
+</html>

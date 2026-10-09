@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZoroMart - Cart</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .cart-page {
+            padding: 50px 6%;
+            min-height: 650px;
+        }
+
+        .cart-title {
+            margin-bottom: 30px;
+        }
+
+        .cart-title p {
+            color: #d4af37;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .cart-title h1 {
+            font-size: 38px;
+            margin: 5px 0;
+        }
+
+        .cart-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .cart-item {
+            background: #141416;
+            border: 1px solid #2b2b30;
+            border-radius: 15px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            background: #202024;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-info h3 {
+            margin-bottom: 5px;
+        }
+
+        .cart-item-info p {
+            color: #a1a1aa;
+            font-size: 13px;
+        }
+
+        .cart-price {
+            font-size: 19px;
+            font-weight: 800;
+            margin-top: 7px;
+        }
+
+        .quantity-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-box button {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #38383d;
+            background: #141416;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .quantity-box button:hover {
+            border-color: #d4af37;
+            color: #d4af37;
+        }
+
+        .remove-btn {
+            border: none;
+            background: transparent;
+            color: #e53935;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .summary {
+            background: #141416;
+            border: 1px solid #2b2b30;
+            border-radius: 15px;
+            padding: 25px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary h2 {
+            margin-bottom: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 13px 0;
+            color: #a1a1aa;
+        }
+
+        .summary-total {
+            border-top: 1px solid #333;
+            padding-top: 15px;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            border: none;
+            background: #d4af37;
+            color: white;
+            padding: 14px;
+            border-radius: 10px;
+            margin-top: 22px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .checkout-btn:hover {
+            background: #b8860b;
+        }
+
+        .continue-btn {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .empty-cart {
+            background: #141416;
+            border: 1px solid #2b2b30;
+            border-radius: 18px;
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .empty-cart div {
+            font-size: 70px;
+        }
+
+        .empty-cart h2 {
+            margin: 15px 0 5px;
+        }
+
+        .empty-cart p {
+            color: #a1a1aa;
+        }
+
+        .empty-cart a {
+            display: inline-block;
+            margin-top: 20px;
+            background: #d4af37;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 22px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 800px) {
+
+            .cart-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .summary {
+                position: static;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .cart-page {
+                padding: 35px 5%;
+            }
+
+            .cart-title h1 {
+                font-size: 30px;
+            }
+
+            .cart-item {
+                flex-wrap: wrap;
+            }
+
+            .cart-item-image {
+                width: 80px;
+                height: 80px;
+            }
+
+            .quantity-box {
+                margin-left: 100px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            <span>⚡</span> ZoroMart
+        </div>
+
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                placeholder="Search products..."
+                id="cartSearch">
+
+            <button onclick="goToProducts()">
+                🔍
+            </button>
+
+        </div>
+
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="products.html">
+                Products
+            </a>
+
+            <a href="cart.html">
+                🛒 Cart
+            </a>
+
+            <a href="login.html">
+                Login
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- CART -->
+
+    <main class="cart-page">
+
+        <div class="cart-title">
+
+            <p>
+                YOUR SHOPPING BAG
+            </p>
+
+            <h1>
+                Shopping Cart 🛒
+            </h1>
+
+        </div>
+
+
+        <div class="cart-layout">
+
+
+            <!-- CART ITEMS -->
+
+            <div
+                id="cartItems"
+                class="cart-items">
+
+            </div>
+
+
+            <!-- SUMMARY -->
+
+            <div class="summary">
+
+                <h2>
+                    Order Summary
+                </h2>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <span id="subtotal">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Delivery
+                    </span>
+
+                    <span id="delivery">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Discount
+                    </span>
+
+                    <span id="discount">
+                        - ₹0
+                    </span>
+
+                </div>
+
+
+                <div class="summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span id="total">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="checkout-btn"
+                    onclick="checkout()">
+
+                    Proceed to Checkout →
+
+                </button>
+
+
+                <a
+                    href="products.html"
+                    class="continue-btn">
+
+                    ← Continue Shopping
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-content">
+
+
+            <div class="footer-brand">
+
+                <h2>
+                    ⚡ ZoroMart
+                </h2>
+
+                <p>
+                    Smart Shopping. Better Choices.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="products.html">
+                    Products
+                </a>
+
+                <a href="cart.html">
+                    Cart
+                </a>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Categories
+                </h3>
+
+                <a href="#">
+                    Electronics
+                </a>
+
+                <a href="#">
+                    Fashion
+                </a>
+
+                <a href="#">
+                    Gaming
+                </a>
+
+                <a href="#">
+                    Home
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Support
+                </h3>
+
+                <a href="#">
+                    Help Center
+                </a>
+
+                <a href="#">
+                    Contact Us
+                </a>
+
+                <a href="#">
+                    Privacy Policy
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 ZoroMart.
+            All Rights Reserved.
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+
+        /* =========================
+           LOAD CART
+           ========================= */
+
+        function loadCart() {
+
+            const cart =
+                JSON.parse(
+                    localStorage.getItem("zoroCart")
+                ) || [];
+
+
+            const container =
+                document.getElementById(
+                    "cartItems"
+                );
+
+
+            container.innerHTML = "";
+
+
+            if (cart.length === 0) {
+
+                container.innerHTML = `
+
+                    <div class="empty-cart">
+
+                        <div>
+                            🛒
+                        </div>
+
+                        <h2>
+                            Your cart is empty
+                        </h2>
+
+                        <p>
+                            Looks like you haven't
+                            added anything to your
+                            cart yet.
+                        </p>
+
+                        <a href="products.html">
+                            Start Shopping →
+                        </a>
+
+                    </div>
+
+                `;
+
+
+                updateSummary();
+
+                return;
+
+            }
+
+
+            cart.forEach(
+                function(product, index) {
+
+                    const item =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    item.className =
+                        "cart-item";
+
+
+                    item.innerHTML = `
+
+                        <div class="cart-item-image">
+                            🛍️
+                        </div>
+
+
+                        <div class="cart-item-info">
+
+                            <h3>
+                                ${product.name}
+                            </h3>
+
+                            <p>
+                                ZoroMart Trusted Seller
+                            </p>
+
+                            <div class="cart-price">
+
+                                ₹${product.price
+                                    .toLocaleString("en-IN")}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="quantity-box">
+
+                            <button
+                                onclick="changeQuantity(${index}, -1)">
+
+                                −
+
+                            </button>
+
+
+                            <strong>
+                                ${product.quantity}
+                            </strong>
+
+
+                            <button
+                                onclick="changeQuantity(${index}, 1)">
+
+                                +
+
+                            </button>
+
+                        </div>
+
+
+                        <button
+                            class="remove-btn"
+                            onclick="removeProduct(${index})">
+
+                            Remove
+
+                        </button>
+
+                    `;
+
+
+                    container.appendChild(item);
+
+                }
+            );
+
+
+            updateSummary();
+
+        }
+
+
+        /* =========================
+           CHANGE QUANTITY
+           ========================= */
+
+        function changeQuantity(
+            index,
+            change
+        ) {
+
+            let cart =
+                JSON.parse(
+                    localStorage.getItem(
+                        "zoroCart"
+                    )
+                ) || [];
+
+
+            cart[index].quantity += change;
+
+
+            if (
+                cart[index].quantity <= 0
+            ) {
+
+                cart.splice(index, 1);
+
+            }
+
+
+            localStorage.setItem(
+                "zoroCart",
+                JSON.stringify(cart)
+            );
+
+
+            loadCart();
+
+        }
+
+
+        /* =========================
+           REMOVE PRODUCT
+           ========================= */
+
+        function removeProduct(index) {
+
+            let cart =
+                JSON.parse(
+                    localStorage.getItem(
+                        "zoroCart"
+                    )
+                ) || [];
+
+
+            cart.splice(index, 1);
+
+
+            localStorage.setItem(
+                "zoroCart",
+                JSON.stringify(cart)
+            );
+
+
+            loadCart();
+
+        }
+
+
+        /* =========================
+           UPDATE SUMMARY
+           ========================= */
+
+        function updateSummary() {
+
+            const cart =
+                JSON.parse(
+                    localStorage.getItem(
+                        "zoroCart"
+                    )
+                ) || [];
+
+
+            let subtotal = 0;
+
+
+            cart.forEach(
+                function(product) {
+
+                    subtotal +=
+                        product.price *
+                        product.quantity;
+
+                }
+            );
+
+
+            const delivery =
+                subtotal === 0
+                    ? 0
+                    : subtotal >= 1000
+                        ? 0
+                        : 49;
+
+
+            const discount =
+                subtotal >= 5000
+                    ? Math.round(
+                        subtotal * 0.10
+                    )
+                    : 0;
+
+
+            const total =
+                subtotal +
+                delivery -
+                discount;
+
+
+            document.getElementById(
+                "subtotal"
+            ).innerText =
+                "₹" +
+                subtotal.toLocaleString(
+                    "en-IN"
+                );
+
+
+            document.getElementById(
+                "delivery"
+            ).innerText =
+                delivery === 0
+                    ? "FREE"
+                    : "₹" + delivery;
+
+
+            document.getElementById(
+                "discount"
+            ).innerText =
+                "- ₹" +
+                discount.toLocaleString(
+                    "en-IN"
+                );
+
+
+            document.getElementById(
+                "total"
+            ).innerText =
+                "₹" +
+                total.toLocaleString(
+                    "en-IN"
+                );
+
+        }
+
+
+        /* =========================
+           CHECKOUT
+           ========================= */
+
+        function checkout() {
+
+            const cart =
+                JSON.parse(
+                    localStorage.getItem(
+                        "zoroCart"
+                    )
+                ) || [];
+
+
+            if (cart.length === 0) {
+
+                alert(
+                    "Your cart is empty! 🛒"
+                );
+
+                return;
+
+            }
+
+
+            /* GO TO CHECKOUT */
+
+            window.location.href =
+                "checkout.html";
+
+        }
+
+
+        /* =========================
+           SEARCH
+           ========================= */
+
+        function goToProducts() {
+
+            const search =
+                document.getElementById(
+                    "cartSearch"
+                ).value.trim();
+
+
+            if (search === "") {
+
+                window.location.href =
+                    "products.html";
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "products.html?search=" +
+                encodeURIComponent(search);
+
+        }
+
+
+        /* =========================
+           LOAD PAGE
+           ========================= */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            loadCart
+        );
+
+    </script>
+
+
+<script src="backend.js"></script></body>
+
+</html>

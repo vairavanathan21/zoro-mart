@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZoroMart - Smart Shopping</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="logo">
+            <span>⚡</span> ZoroMart
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search for products...">
+            <button onclick="searchProduct()">🔍</button>
+        </div>
+
+        <nav class="nav">
+
+            <a href="index.html">Home</a>
+
+            <a href="products.html">Products</a>
+
+            <a href="cart.html">🛒 Cart</a>
+
+            <a href="login.html">Login</a>
+
+            <a href="signup.html">Sign Up</a>
+            <a href="seller-dashboard.html">Sell</a>
+
+            
+
+        </nav>
+
+    </header>
+
+
+<!-- ================= HERO SECTION ================= -->
+<section class="hero">
+
+    <div class="hero-background"></div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <p class="subtitle">EXCLUSIVE COLLECTION</p>
+
+        <h1>
+            CURATED LUXURY <br>
+            <span>UNVEILING EXTRAORDINARY</span>
+        </h1>
+
+        <a href="#featured" class="gold-btn">
+            EXPLORE COLLECTIONS
+        </a>
+
+    </div>
+
+</section>
+
+
+    <!-- ================= CATEGORIES ================= -->
+
+    <section class="categories">
+
+        <div class="section-heading">
+
+            <div>
+                <p>EXPLORE</p>
+                <h2>Shop by Category</h2>
+            </div>
+
+            <a href="products.html">View All →</a>
+
+        </div>
+
+
+        <div class="category-container">
+
+            <div class="category-card">
+                <div class="category-icon">📱</div>
+                <h3>Electronics</h3>
+                <p>120+ Products</p>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">👕</div>
+                <h3>Fashion</h3>
+                <p>250+ Products</p>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">💻</div>
+                <h3>Computers</h3>
+                <p>80+ Products</p>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">🏠</div>
+                <h3>Home</h3>
+                <p>180+ Products</p>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">🎮</div>
+                <h3>Gaming</h3>
+                <p>95+ Products</p>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">⌚</div>
+                <h3>Accessories</h3>
+                <p>150+ Products</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= DEAL SECTION ================= -->
+
+    <section class="deal-section">
+
+        <div class="deal-content">
+
+            <p>LIMITED TIME OFFER</p>
+
+            <h2>🔥 Deal of the Day</h2>
+
+            <h3>Up to <span>50% OFF</span></h3>
+
+            <p>
+                Grab the best deals before they're gone!
+            </p>
+
+            <a href="products.html" class="deal-btn">
+                Shop Deals →
+            </a>
+
+        </div>
+
+        <div class="deal-timer">
+
+            <div>
+                <strong>12</strong>
+                <small>Hours</small>
+            </div>
+
+            <div>
+                <strong>35</strong>
+                <small>Minutes</small>
+            </div>
+
+            <div>
+                <strong>48</strong>
+                <small>Seconds</small>
+            </div>
+
+        </div>
+
+    </section>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section class="products-section">
+
+    <div class="section-heading">
+
+        <div>
+            <p>POPULAR</p>
+            <h2>Trending Products</h2>
+        </div>
+
+        <a href="products.html">View All →</a>
+
+    </div>
+
+
+    <div class="product-container">
+
+        <!-- PRODUCT 1 -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img src="smartphone.jpg"
+                     alt="Premium Smartphone">
+
+                <span class="discount">-20%</span>
+
+                <button class="wishlist">♡</button>
+
+            </div>
+
+            <div class="product-info">
+
+                <p class="product-category">
+                    Electronics
+                </p>
+
+                <h3>
+                    Premium Smartphone
+                </h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐
+                    <span>(128)</span>
+                </div>
+
+                <div class="price">
+                    ₹24,999
+                    <del>₹30,999</del>
+                </div>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Premium Smartphone')">
+
+                    Add to Cart 🛒
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 2 -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img src="headphones.jpg"
+                     alt="Wireless Headphones">
+
+                <span class="discount">-30%</span>
+
+                <button class="wishlist">♡</button>
+
+            </div>
+
+            <div class="product-info">
+
+                <p class="product-category">
+                    Accessories
+                </p>
+
+                <h3>
+                    Wireless Headphones
+                </h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐
+                    <span>(96)</span>
+                </div>
+
+                <div class="price">
+                    ₹1,999
+                    <del>₹2,999</del>
+                </div>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Wireless Headphones')">
+
+                    Add to Cart 🛒
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 3 -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img src="laptop.jpg"
+                     alt="Ultra Laptop">
+
+                <span class="discount">-15%</span>
+
+                <button class="wishlist">♡</button>
+
+            </div>
+
+            <div class="product-info">
+
+                <p class="product-category">
+                    Computers
+                </p>
+
+                <h3>
+                    Ultra Laptop
+                </h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐
+                    <span>(74)</span>
+                </div>
+
+                <div class="price">
+                    ₹59,999
+                    <del>₹69,999</del>
+                </div>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Ultra Laptop')">
+
+                    Add to Cart 🛒
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 4 -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img src="smartwatch.jpg"
+                     alt="Smart Watch">
+
+                <span class="discount">-25%</span>
+
+                <button class="wishlist">♡</button>
+
+            </div>
+
+            <div class="product-info">
+
+                <p class="product-category">
+                    Accessories
+                </p>
+
+                <h3>
+                    Smart Watch
+                </h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐☆
+                    <span>(51)</span>
+                </div>
+
+                <div class="price">
+                    ₹2,499
+                    <del>₹3,499</del>
+                </div>
+
+                <button
+                    class="cart-btn"
+                    onclick="addToCart('Smart Watch')">
+
+                    Add to Cart 🛒
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+                
+
+    <!-- ================= WHY ZOROMART ================= -->
+
+    <section class="why-section">
+
+        <div class="section-heading center">
+
+            <div>
+                <p>WHY US?</p>
+                <h2>Why Choose ZoroMart?</h2>
+            </div>
+
+        </div>
+
+
+        <div class="features">
+
+            <div class="feature-card">
+
+                <div>🚚</div>
+
+                <h3>Fast Delivery</h3>
+
+                <p>
+                    Get your products delivered quickly
+                    and safely.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div>🔒</div>
+
+                <h3>Secure Payment</h3>
+
+                <p>
+                    Your payments are protected with
+                    secure technology.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div>🏪</div>
+
+                <h3>Trusted Sellers</h3>
+
+                <p>
+                    Shop from verified sellers across
+                    different categories.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div>💬</div>
+
+                <h3>24/7 Support</h3>
+
+                <p>
+                    Our support team is always ready
+                    to help you.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SELLER BANNER ================= -->
+
+    <section class="seller-banner">
+
+        <div>
+
+            <p>GROW YOUR BUSINESS</p>
+
+            <h2>
+                Become a ZoroMart Seller 🏪
+            </h2>
+
+            <p>
+                Start selling your products and reach
+                thousands of customers.
+            </p>
+
+        </div>
+
+        <a href="seller-register.html">
+            Start Selling →
+        </a>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+
+                <h2>⚡ ZoroMart</h2>
+
+                <p>
+                    Smart Shopping. Better Choices.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>Quick Links</h3>
+
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="cart.html">Cart</a>
+                <a href="login.html">Login</a>
+
+            </div>
+
+
+            <div>
+
+                <h3>Categories</h3>
+
+                <a href="#">Electronics</a>
+                <a href="#">Fashion</a>
+                <a href="#">Gaming</a>
+                <a href="#">Home</a>
+
+            </div>
+
+
+            <div>
+
+                <h3>Support</h3>
+
+                <a href="#">Help Center</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 ZoroMart. All Rights Reserved.
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+<style>.chat-launch{position:fixed;right:24px;bottom:24px;z-index:1500;border:0;border-radius:50%;width:58px;height:58px;background:#d4af37;color:#080808;font-size:24px;box-shadow:0 8px 28px #0008;cursor:pointer}.chat-panel{display:none;position:fixed;right:24px;bottom:94px;width:min(340px,calc(100vw - 32px));z-index:1500;background:#141416;border:1px solid #8e7429;border-radius:16px;overflow:hidden;box-shadow:0 15px 50px #000b}.chat-panel.open{display:block}.chat-head{padding:15px;background:#1d1b14;color:#f2d875;font-weight:800}.chat-log{height:220px;overflow:auto;padding:14px;font-size:13px}.chat-log p{margin:0 0 10px;padding:9px 11px;background:#252529;border-radius:9px}.chat-controls{display:flex;padding:10px;gap:8px}.chat-controls input{min-width:0;flex:1;background:#09090b;color:white;border:1px solid #333;border-radius:8px;padding:10px}.chat-controls button{background:#d4af37;border:0;border-radius:8px;padding:0 12px}</style><section class="chat-panel" id="chatPanel"><div class="chat-head">⚡ ZoroMart Assistant <span style="float:right;color:#999;font-weight:400">Product FAQ</span></div><div class="chat-log" id="chatLog"><p>Hi! Ask me about products, delivery, cart or returns.</p></div><form class="chat-controls" id="chatForm"><input id="chatInput" placeholder="Ask a question..." required><button>Send</button></form></section><button class="chat-launch" id="chatLaunch" aria-label="Open assistant">✦</button><script>document.getElementById('chatLaunch').onclick=()=>document.getElementById('chatPanel').classList.toggle('open');document.getElementById('chatForm').onsubmit=e=>{e.preventDefault();let q=document.getElementById('chatInput').value.trim();let log=document.getElementById('chatLog');let p=document.createElement('p');p.textContent='You: '+q;log.appendChild(p);let answer='I can help with product browsing, search, cart and checkout. Please open Products to view available listings.';if(/cart|checkout|buy|order/i.test(q))answer='Add a product to your cart, open Cart, then continue to Checkout. This front-end demo uses local storage; the Java version should confirm orders through the server.';if(/seller|sell|listing/i.test(q))answer='Use Seller Studio to add, edit or remove your product listings.';if(/price|cheap|cost/i.test(q))answer='Open Products and use the price sorting menu to compare listings.';let a=document.createElement('p');a.textContent='Assistant: '+answer;log.appendChild(a);document.getElementById('chatInput').value='';log.scrollTop=log.scrollHeight};</script>
+<script src="backend.js"></script></body>
+
+</html>
