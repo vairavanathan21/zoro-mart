@@ -1,0 +1,44 @@
+ZOROMART FULL JAVA PROJECT — START HERE (TANGLISH)
+==================================================
+
+1) ZIP extract pannunga.
+2) Extract panna folder-la pom.xml irukkura ZoroMart_PDF_Aligned folder-ai VS Code-la Open Folder pannunga.
+3) JDK 17, Maven 3.9+, Tomcat 9 install aagirukkanum.
+4) VS Code terminal open panni indha commands run pannunga:
+
+   mvn -B clean verify
+
+   Build successful aana target\ZoroMart.war file create aagum.
+
+5) target\ZoroMart.war file-ai Tomcat 9 webapps folder-kulla copy pannunga.
+6) Tomcat start pannunga. Tomcat manager auto-deploy pannum.
+7) Browser-la open pannunga:
+
+   http://localhost:8080/ZoroMart/
+
+   Tomcat port vera irundha 8080-ai unga port-a maathunga.
+
+8) Health check:
+
+   http://localhost:8080/ZoroMart/api/v1/health
+
+9) Admin login (local demo only):
+   Email: admin@zoromart.in
+   Password: ChangeMe@123
+
+   IMPORTANT: First startup-ku munnaadi strong password set pannunga. Windows CMD-la Tomcat start panna munnaadi:
+
+   set ZOROMART_ADMIN_PASSWORD=YourStrongPasswordHere
+   set ZOROMART_ADMIN_EMAIL=admin@zoromart.in
+
+   Andha CMD window-la Tomcat start pannunga. Admin account already DB-la create aayiduchuna environment password change pannina mattum existing password update aagadhu.
+
+10) Buyer/Seller account create panna Signup page use pannunga. Admin signup option backend-la reject pannum.
+11) Seller login panni listing add pannunga. Buyer login panni product search → cart → checkout → order history test pannunga.
+12) Admin login panni order status-ai DELIVERED set pannunga; appuram Buyer login-la review submit pannalaam.
+
+Important:
+- Checkout mock payment mattum; real money charge aagadhu.
+- `mvn clean verify` run pannina dhaan tests/build local-la verify aagum.
+- Public live URL naan create pannala; college-approved server/cloud-la deploy panni test pannanum.
+- Public deployment-ku munnaadi default admin password change pannunga; API key/password/.env/database file GitHub-la upload panna koodadhu.
