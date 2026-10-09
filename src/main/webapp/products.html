@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZoroMart | Products</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://images.unsplash.com">
+
+<style>
+:root {
+  --gold: #d4af37;
+  --bg: #09090b;
+  --card: #151518;
+  --muted: #999;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+.catalog {
+  padding: 125px 7% 70px;
+  min-height: 100vh;
+}
+
+.catalog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.catalog h1 {
+  font-size: 38px;
+  margin: 8px 0;
+}
+
+.description {
+  color: var(--muted);
+}
+
+.gold-btn {
+  background: var(--gold);
+  color: #090909;
+  text-decoration: none;
+  padding: 12px 18px;
+  border-radius: 9px;
+  font-weight: 800;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 25px 0 15px;
+}
+
+.filters input,
+.filters select {
+  background: #141416;
+  color: #eee;
+  border: 1px solid #343438;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 14px;
+}
+
+.filters input {
+  flex: 1;
+  min-width: 210px;
+}
+
+.catalog-info {
+  color: #aaa;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.item {
+  background: linear-gradient(145deg, #18181b, #101012);
+  border: 1px solid #29292d;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: .25s;
+}
+
+.item:hover {
+  transform: translateY(-4px);
+  border-color: #8e7429;
+}
+
+.item-art {
+  height: 190px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: radial-gradient(circle, #28251a, #121214 70%);
+}
+
+.item-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .3s;
+}
+
+.item:hover .item-art img {
+  transform: scale(1.05);
+}
+
+.item-body {
+  padding: 16px;
+}
+
+.item small {
+  color: var(--gold);
+  font-size: 11px;
+}
+
+.item h3 {
+  margin: 9px 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.item p {
+  min-height: 38px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.item-price {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 14px 0;
+}
+
+.gold-action {
+  width: 100%;
+  padding: 11px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--gold);
+  color: #080808;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.gold-action:hover {
+  background: #f0cf5c;
+}
+
+.empty {
+  padding: 35px;
+  text-align: center;
+  color: #aaa;
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 1100px) {
+  .catalog-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 750px) {
+  .catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .catalog {
+    padding: 110px 5% 40px;
+  }
+
+  .catalog h1 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 450px) {
+  .catalog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <a class="logo" href="index.html">
+    <span>⚡</span>ZoroMart
+  </a>
+
+  <div class="search-box">
+    <input id="searchInput" placeholder="Search products...">
+    <button id="searchBtn" type="button">⌕</button>
+  </div>
+
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="orders.html">Orders</a>
+    <a href="cart.html">🛒 Cart</a>
+    <a href="login.html">Login</a>
+  </nav>
+</header>
+
+<main class="catalog">
+
+  <div class="catalog-head">
+    <div>
+      <p class="eyebrow">THE MARKETPLACE</p>
+      <h1>Explore Products</h1>
+      <p class="description">
+        Discover products from independent sellers.
+      </p>
+    </div>
+
+    <a class="gold-btn" href="seller-dashboard.html">
+      Sell on ZoroMart ↗
+    </a>
+  </div>
+
+  <div class="filters">
+    <input id="keyword" placeholder="Search by product or seller">
+
+    <select id="category">
+      <option value="ALL">All categories</option>
+      <option>Electronics</option>
+      <option>Fashion</option>
+      <option>Computers</option>
+      <option>Home</option>
+      <option>Gaming</option>
+      <option>Accessories</option>
+    </select>
+
+    <select id="sort">
+      <option value="featured">Featured</option>
+      <option value="low">Price: low to high</option>
+      <option value="high">Price: high to low</option>
+    </select>
+  </div>
+
+  <div class="catalog-info" id="productCount">
+    Loading products...
+  </div>
+
+  <div class="catalog-grid" id="grid"></div>
+
+</main>
+
+<script>
+
+// Image URL helper
+function image(photoId) {
+  return "https://images.unsplash.com/" + photoId +
+    "?auto=format&fit=crop&w=700&q=80";
+}
+
+// 100 DIFFERENT PRODUCTS
+const rawProducts = [
+
+["Smartphone X12","Electronics",24999,12,"Nova Tech","photo-1511707171634-5f897ff02aa9","Fast phone with a vivid display."],
+["Wireless Headphones","Accessories",1999,25,"SoundHouse","photo-1505740420928-5e560c06d30e","Immersive sound and all-day comfort."],
+["Ultra Laptop 15","Computers",59999,8,"Nova Tech","photo-1496181133206-80ce9b88a853","Powerful laptop for work and study."],
+["Smart Watch Active","Accessories",2499,16,"TimeCraft","photo-1523275335684-37898b6baf30","Track your everyday activities."],
+["Cotton Hoodie","Fashion",1299,30,"Urban Loom","photo-1556821840-3a63f95609a7","Soft and comfortable casual clothing."],
+["Wireless Gaming Controller","Gaming",3499,10,"PixelPlay","photo-1606144042614-b2417e99c4e3","Responsive controls for gaming."],
+["Modern Desk Lamp","Home",899,18,"Nest Living","photo-1507473885765-e6ed057f782c","Warm lighting for your workspace."],
+["Mechanical Keyboard","Computers",4299,9,"Nova Tech","photo-1587829741301-dc798b83add3","Tactile keys for work and play."],
+["Running Shoes","Fashion",2999,20,"Urban Loom","photo-1542291026-7eec264c27ff","Lightweight everyday footwear."],
+["Travel Backpack","Accessories",1499,15,"TravelPro","photo-1553062407-98eeb64c6a62","Carry your essentials with ease."],
+
+["Digital Camera","Electronics",32999,7,"Nova Tech","photo-1516035069371-29a1b244cc32","Capture your favourite moments."],
+["Bluetooth Speaker","Electronics",2499,22,"SoundHouse","photo-1608043152269-423dbba4e7e1","Bring your music anywhere."],
+["Ergonomic Office Chair","Home",6999,11,"Nest Living","photo-1503602642458-232111445657","Comfort for your workspace."],
+["Modern Living Room Sofa","Home",18999,5,"Nest Living","photo-1555041469-a586c61ea9bc","Refresh your living room."],
+["Automatic Coffee Maker","Home",3499,13,"Daily Living","photo-1495474472287-4d71bcdd2085","Make coffee at home."],
+["Classic Sunglasses","Fashion",999,28,"Urban Loom","photo-1511499767150-a48a237f0083","A stylish everyday accessory."],
+["Luxury Perfume","Fashion",1799,17,"StyleHub","photo-1541643600914-78b084683601","A refreshing fragrance."],
+["Leather Wallet","Accessories",799,24,"StyleHub","photo-1627123424574-724758594e93","Keep your cards organised."],
+["Fashion Ring","Accessories",1299,14,"StyleHub","photo-1605100804763-247f67b3557e","A simple stylish accessory."],
+["Notebook Set","Home",399,40,"PaperWorld","photo-1544947950-fa07a98d237f","Write down ideas and plans."],
+
+["4K Computer Monitor","Computers",12999,9,"Nova Tech","photo-1527443224154-c4a3942d3acf","A clear screen for work and gaming."],
+["Android Tablet","Electronics",15999,10,"Nova Tech","photo-1544244015-0df4b3ffc6b0","Portable entertainment and productivity."],
+["Home Ink Printer","Electronics",5999,6,"OfficePlus","photo-1612815154858-60aa4c59eaa6","Print useful documents at home."],
+["Classic Cotton T-Shirt","Fashion",599,35,"Urban Loom","photo-1521572163474-6864f9cf17ab","A comfortable everyday essential."],
+["Insulated Water Bottle","Accessories",499,32,"Daily Living","photo-1602143407151-7111542de6e8","Keep your drink close all day."],
+["Gaming Laptop","Computers",82999,6,"PixelPlay","photo-1593642632823-8f785ba67e45","Powerful performance for games."],
+["Portable SSD 1TB","Computers",6999,15,"Nova Tech","photo-1531492746076-161ca9bcad58","Fast portable file storage."],
+["USB-C Hub","Computers",1799,21,"Nova Tech","photo-1625842268584-8f3296236761","Connect more devices to your laptop."],
+["Wireless Mouse","Computers",999,27,"Nova Tech","photo-1527864550417-7fd91fc51a46","Precise wireless control."],
+["Laptop Stand","Computers",1299,19,"OfficePlus","photo-1527864550417-7fd91fc51a46","Raise your screen for a better setup."],
+
+["Gaming Headset","Gaming",3999,13,"PixelPlay","photo-1599669454699-248893623440","Clear audio and comfortable earcups."],
+["RGB Gaming Mouse","Gaming",1499,17,"PixelPlay","photo-1527814050087-3793815479db","Custom lighting for your gaming desk."],
+["Gaming Desk","Gaming",8999,5,"PixelPlay","photo-1593642632823-8f785ba67e45","A dedicated space for gaming."],
+["Console Storage Case","Gaming",1299,14,"PixelPlay","photo-1606144042614-b2417e99c4e3","Protect your gaming accessories."],
+["Football","Gaming",899,22,"ActiveZone","photo-1579952363873-27f3bade9f55","A durable ball for practice."],
+["Yoga Mat","Accessories",799,24,"ActiveZone","photo-1592432678016-e910b452f9a2","Comfortable support for stretching."],
+["Dumbbell Set","Accessories",2499,12,"ActiveZone","photo-1583454110551-21f2fa2afe61","Strength training at home."],
+["Sports Water Flask","Accessories",699,31,"ActiveZone","photo-1602143407151-7111542de6e8","Hydration for workouts and travel."],
+["Men's Casual Jacket","Fashion",2499,16,"Urban Loom","photo-1551028719-00167b16eac5","Layer up in casual style."],
+["Women's Handbag","Fashion",2199,18,"StyleHub","photo-1584917865442-de89df76afd3","Carry essentials in style."],
+
+["Denim Jeans","Fashion",1799,20,"Urban Loom","photo-1542272604-787c3835535d","Everyday denim comfort."],
+["Formal Shirt","Fashion",1499,23,"Urban Loom","photo-1598033129183-c4f50c736f10","Smart style for formal occasions."],
+["Summer Dress","Fashion",1899,14,"StyleHub","photo-1515886657613-9f3515b0c78f","Lightweight style for warm days."],
+["Running Cap","Fashion",499,26,"ActiveZone","photo-1588850561407-ed78c282e89b","Lightweight sun protection."],
+["Leather Belt","Accessories",599,29,"StyleHub","photo-1624222247344-550fb8d9b6f7","A useful wardrobe essential."],
+["Travel Suitcase","Accessories",4999,8,"TravelPro","photo-1565026057447-bc90a3dceb87","Pack for your next trip."],
+["Passport Holder","Accessories",499,34,"TravelPro","photo-1512412046876-f386342eddb3","Keep travel documents together."],
+["Desk Organiser","Home",699,19,"OfficePlus","photo-1498050108023-c5249f4df085","Keep your desk neat."],
+["Wall Clock","Home",1199,13,"Nest Living","photo-1563861826100-9cb868fdbe1c","A simple clock for your room."],
+["Decorative Vase","Home",899,17,"Nest Living","photo-1578500494198-246f612d3b3d","Add a decorative touch."],
+
+["Bedside Table","Home",3499,7,"Nest Living","photo-1505693416388-ac5ce068fe85","Practical storage beside your bed."],
+["Cotton Bedsheet Set","Home",1599,16,"Nest Living","photo-1631049307264-da0ec9d70304","Soft bedding for everyday comfort."],
+["Throw Pillow Set","Home",799,22,"Nest Living","photo-1584100936595-c0654b55a2e2","Refresh your sofa or bed."],
+["Nonstick Frying Pan","Home",999,15,"Daily Living","photo-1556911220-e15b29be8c8f","Easy everyday cooking."],
+["Stainless Steel Cookware","Home",2999,9,"Daily Living","photo-1556911220-e15b29be8c8f","Useful cookware for your kitchen."],
+["Electric Kettle","Home",1299,20,"Daily Living","photo-1517668808822-9ebb02f2a0e6","Boil water quickly."],
+["Air Fryer","Home",4999,8,"Daily Living","photo-1585515320310-259814833e62","Convenient countertop cooking."],
+["Food Storage Containers","Home",699,28,"Daily Living","photo-1498837167922-ddd27525d352","Organise kitchen ingredients."],
+["Rechargeable Table Fan","Home",1799,12,"Daily Living","photo-1522202176988-66273c2fd55f","A compact cooling option."],
+["Robot Vacuum Cleaner","Home",12999,5,"Daily Living","photo-1558317374-067fb5f30001","Help keep floors clean."],
+
+["LED Strip Lights","Home",599,32,"Nest Living","photo-1550684848-fac1c5b4e853","Add ambient lighting to a room."],
+["Smart Plug","Electronics",999,18,"Nova Tech","photo-1558002038-1055907df827","Control compatible devices conveniently."],
+["Security Camera","Electronics",2499,11,"Nova Tech","photo-1557324232-b8917d3c3dcb","Monitor your home."],
+["Power Bank 20000mAh","Electronics",1799,23,"Nova Tech","photo-1609091839311-d5365f9ff1c5","Extra power while travelling."],
+["Fast Charger 65W","Electronics",1299,25,"Nova Tech","photo-1583394838336-acd977736f90","Charge compatible devices quickly."],
+["USB-C Cable","Electronics",299,45,"Nova Tech","photo-1558618666-fcd25c85cd64","Everyday charging and data cable."],
+["Phone Protective Case","Accessories",399,50,"Nova Tech","photo-1601593346740-925612772716","Help protect your phone."],
+["Tempered Glass Screen Guard","Accessories",199,60,"Nova Tech","photo-1511707171634-5f897ff02aa9","An extra layer for your screen."],
+["Wireless Charging Pad","Electronics",1499,16,"Nova Tech","photo-1586953208448-b95a79798f07","Convenient compatible wireless charging."],
+["Action Camera","Electronics",14999,7,"Nova Tech","photo-1516035069371-29a1b244cc32","Record outdoor adventures."],
+
+["Tripod Stand","Accessories",1299,13,"CreatorKit","photo-1516035069371-29a1b244cc32","Keep your camera steady."],
+["Ring Light","Accessories",999,21,"CreatorKit","photo-1520390138845-fd2d229dd553","Light up video calls and recordings."],
+["Podcast Microphone","Electronics",3499,10,"CreatorKit","photo-1590602847861-f357a9332bbc","Clear audio for recordings."],
+["Drawing Tablet","Computers",6999,8,"CreatorKit","photo-1563089145-599997674d42","Create digital artwork."],
+["Ink Pen Set","Home",499,35,"PaperWorld","photo-1455390582262-044cdeel277","A useful set for writing."],
+["Study Desk","Home",5999,6,"OfficePlus","photo-1518455027359-f3f8164ba6bd","A dedicated place to study."],
+["Bookshelf","Home",4499,7,"Nest Living","photo-1594620302200-9a762244a156","Organise books and decor."],
+["Reusable Shopping Bag","Accessories",199,55,"Daily Living","photo-1544816155-12df9643f363","A reusable bag for shopping."],
+["Lunch Box","Accessories",599,27,"Daily Living","photo-1607623814075-e51df1bdc82f","Pack meals for school or work."],
+["Travel Neck Pillow","Accessories",699,20,"TravelPro","photo-1511919884226-fd3cad34687c","Extra comfort during journeys."],
+
+["Compact Umbrella","Accessories",499,30,"TravelPro","photo-1534274988757-a28bf1a57c17","Carryable protection from rain."],
+["Scented Candle","Home",399,24,"Nest Living","photo-1603006905003-be475563bc59","Create a cosy atmosphere."],
+["Essential Oil Diffuser","Home",1499,12,"Nest Living","photo-1608571423902-eed4a5ad8108","Add fragrance to your room."],
+["Wall Art Print","Home",799,14,"Nest Living","photo-1579783902614-a3fb3927b6a5","Decorate your wall."],
+["Ceramic Dinner Set","Home",1999,9,"Daily Living","photo-1603199506016-b9a594b593c0","Dinnerware for everyday meals."],
+["Electric Toothbrush","Electronics",1999,16,"Daily Living","photo-1559591937-abc1b9e1d9d7","Support your daily oral care."],
+["Hair Dryer","Electronics",1799,13,"StyleHub","photo-1522338242992-e1a54906a8da","Dry and style your hair."],
+["Skin Care Travel Kit","Accessories",899,17,"StyleHub","photo-1608248543803-ba4f8c70ae0b","Keep skincare essentials together."],
+["Electric Trimmer","Electronics",1499,15,"StyleHub","photo-1621607512214-68297480165e","Convenient grooming at home."],
+["Makeup Brush Set","Accessories",699,19,"StyleHub","photo-1522335789203-aabd1fc54bc9","Brushes for everyday makeup."],
+
+["Pet Feeding Bowl","Home",399,21,"PetCorner","photo-1589924691995-400dc9ecc119","A bowl for your pet."],
+["Pet Carrier Bag","Accessories",1599,8,"PetCorner","photo-1548199973-03cce0bbc87b","Help transport small pets."],
+["Indoor Plant Pot","Home",499,25,"Nest Living","photo-1485955900006-10f4d324d411","Bring greenery indoors."],
+["Garden Tool Set","Home",1299,10,"Nest Living","photo-1416879595882-3373a0480b5b","Useful tools for garden care."],
+["Bicycle Helmet","Accessories",1799,12,"ActiveZone","photo-1507035895480-2b3156c31fc8","Protective gear for cycling."],
+["Skateboard","Gaming",2499,9,"ActiveZone","photo-1547447134-cd3f5c716030","A board for recreational skating."],
+["Badminton Racket","Gaming",999,18,"ActiveZone","photo-1626224583764-f87db24ac4ea","Equipment for a badminton game."],
+["Camping Lantern","Accessories",899,14,"TravelPro","photo-1504851149312-7a075b496cc7","Light for outdoor trips."],
+["Picnic Blanket","Home",799,16,"TravelPro","photo-1500530855697-b586d89ba3ee","Useful for outdoor picnics."],
+["Binoculars","Electronics",2999,6,"TravelPro","photo-1472396961693-142e6e269027","View distant outdoor scenes."]
+
+];
+
+// Category fallback images
+const imageByCategory = {
+  Electronics: "photo-1511707171634-5f897ff02aa9",
+  Fashion: "photo-1521572163474-6864f9cf17ab",
+  Computers: "photo-1496181133206-80ce9b88a853",
+  Home: "photo-1493663284031-b7e3aefcae8e",
+  Gaming: "photo-1606144042614-b2417e99c4e3",
+  Accessories: "photo-1553062407-98eeb64c6a62"
+};
+
+// Convert product data into objects
+const products = rawProducts.map((p, i) => ({
+  id: i + 1,
+  name: p[0],
+  category: p[1],
+  price: p[2],
+  stock: p[3],
+  seller: p[4],
+  image: image(p[5]),
+  desc: p[6]
+}));
+
+// Include seller-created products saved in this browser
+function allProducts() {
+  let custom = [];
+
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem("zoroListings") || "[]"
+    );
+
+    if (Array.isArray(saved)) {
+      custom = saved;
+    }
+  } catch (e) {
+    console.log("Could not load seller listings.");
+  }
+
+  return [...products, ...custom];
+}
+
+// Prevent product text from inserting HTML
+function safeText(value) {
+  return String(value ?? "").replace(/[&<>"']/g, ch => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[ch]));
+}
+
+// Display products
+function render() {
+  const keyword = (
+    document.getElementById("keyword").value ||
+    document.getElementById("searchInput").value
+  ).trim().toLowerCase();
+
+  const category = document.getElementById("category").value;
+  const sort = document.getElementById("sort").value;
+
+  let list = allProducts().filter(p =>
+    (
+      String(p.name || "") + " " +
+      String(p.category || "") + " " +
+      String(p.seller || "")
+    ).toLowerCase().includes(keyword) &&
+    (category === "ALL" || p.category === category)
+  );
+
+  if (sort === "low") {
+    list.sort((a, b) => Number(a.price) - Number(b.price));
+  }
+
+  if (sort === "high") {
+    list.sort((a, b) => Number(b.price) - Number(a.price));
+  }
+
+  document.getElementById("productCount").textContent =
+    `${list.length} products found`;
+
+  document.getElementById("grid").innerHTML = list.length
+    ? list.map(p => `
+      <article class="item">
+
+        <div class="item-art">
+          <img
+            src="${safeText(p.image || image(imageByCategory[p.category] || imageByCategory.Accessories))}"
+            alt="${safeText(p.name)}"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='${image(imageByCategory[p.category] || imageByCategory.Accessories)}'"
+          >
+        </div>
+
+        <div class="item-body">
+
+          <small>
+            ${safeText(p.category)} · ${Number(p.stock) || 0} in stock
+          </small>
+
+          <h3>${safeText(p.name)}</h3>
+
+          <p>
+            ${safeText(p.desc || "Seller listed product")}
+            <br>
+            Seller: ${safeText(p.seller || "ZoroMart Seller")}
+          </p>
+
+          <div class="item-price">
+            ₹${Number(p.price || 0).toLocaleString("en-IN")}
+          </div>
+
+          <button class="gold-action" data-id="${safeText(p.id)}">
+            Add to Cart +
+          </button>
+
+        </div>
+      </article>
+    `).join("")
+    : '<div class="empty">No products match your search.</div>';
+}
+
+// Add selected product to cart
+function addCart(id) {
+  const p = allProducts().find(x => String(x.id) === String(id));
+
+  if (!p) return;
+
+  let cart = [];
+
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem("zoroCart") || "[]"
+    );
+
+    if (Array.isArray(saved)) {
+      cart = saved;
+    }
+  } catch (e) {
+    cart = [];
+  }
+
+  const existing = cart.find(x => x.name === p.name);
+
+  if (existing) {
+    existing.quantity = (Number(existing.quantity) || 1) + 1;
+  } else {
+    cart.push({
+      id: p.id,
+      name: p.name,
+      price: Number(p.price),
+      quantity: 1,
+      category: p.category,
+      art: "📦",
+      image: p.image || ""
+    });
+  }
+
+  localStorage.setItem("zoroCart", JSON.stringify(cart));
+
+  alert(p.name + " added to cart!");
+}
+
+// Add-to-cart button click handler
+document.getElementById("grid").addEventListener("click", e => {
+  const button = e.target.closest("button[data-id]");
+
+  if (button) {
+    addCart(button.dataset.id);
+  }
+});
+
+// Search, category and price sorting
+["keyword", "category", "sort"].forEach(id => {
+  document.getElementById(id).addEventListener("input", render);
+});
+
+// Header search
+document.getElementById("searchInput").addEventListener("input", () => {
+  document.getElementById("keyword").value =
+    document.getElementById("searchInput").value;
+
+  render();
+});
+
+document.getElementById("searchBtn").addEventListener("click", render);
+
+// Load products when the page opens
+render();
+
+</script>
+
+</body>
+</html>

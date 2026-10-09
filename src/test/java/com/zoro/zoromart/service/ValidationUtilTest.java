@@ -1,0 +1,4 @@
+package com.zoro.zoromart.service;
+import com.zoro.zoromart.util.ValidationUtil;import org.junit.jupiter.api.Test;import java.math.BigDecimal;import static org.junit.jupiter.api.Assertions.*;
+/** Unit tests for service-layer input validation rules. */
+class ValidationUtilTest {@Test void acceptsValidEmail(){assertEquals("student@example.com",ValidationUtil.email("Student@Example.com"));}@Test void rejectsInvalidEmail(){assertThrows(IllegalArgumentException.class,()->ValidationUtil.email("bad-email"));}@Test void acceptsCurrencyAsDecimal(){assertEquals(new BigDecimal("10.50"),ValidationUtil.price("10.50"));}@Test void rejectsNegativePrice(){assertThrows(IllegalArgumentException.class,()->ValidationUtil.price("-1"));}@Test void rejectsInvalidQuantity(){assertThrows(IllegalArgumentException.class,()->ValidationUtil.quantity(0));}}
