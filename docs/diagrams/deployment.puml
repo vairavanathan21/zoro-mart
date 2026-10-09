@@ -1,0 +1,21 @@
+@startuml
+node "Buyer/Seller/Admin Browser" as browser {
+ artifact "HTML / CSS / vanilla JS"
+}
+node "Tomcat 9 / JDK 17" as tomcat {
+ component "Filters" as filters
+ component "ApiServlet" as api
+ component "Service layer" as service
+ component "DAO layer" as dao
+ component "HikariCP pool" as pool
+}
+database "H2 database" as db
+cloud "Optional Gemini API" as gemini
+browser --> filters : HTTP / session cookie
+filters --> api
+api --> service
+service --> dao
+dao --> pool
+pool --> db
+service ..> gemini : optional server-side HTTPS
+@enduml

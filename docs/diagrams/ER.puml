@@ -1,0 +1,19 @@
+@startuml
+hide circle
+skinparam linetype ortho
+entity users { * id : BIGINT <<PK>> -- name : VARCHAR -- email : VARCHAR <<UNIQUE>> -- password_hash : VARCHAR -- role : VARCHAR -- created_at : TIMESTAMP }
+entity products { * id : BIGINT <<PK>> -- seller_id : BIGINT <<FK>> -- name : VARCHAR -- description : VARCHAR -- price : DECIMAL(10,2) -- stock_qty : INT -- category : VARCHAR -- image_url : VARCHAR -- created_at : TIMESTAMP }
+entity orders { * id : BIGINT <<PK>> -- buyer_id : BIGINT <<FK>> -- status : VARCHAR -- total_amount : DECIMAL(10,2) -- created_at : TIMESTAMP }
+entity order_items { * id : BIGINT <<PK>> -- order_id : BIGINT <<FK>> -- product_id : BIGINT <<FK>> -- quantity : INT -- unit_price : DECIMAL(10,2) -- created_at : TIMESTAMP }
+entity cart_items { * id : BIGINT <<PK>> -- user_id : BIGINT <<FK>> -- product_id : BIGINT <<FK>> -- quantity : INT -- created_at : TIMESTAMP }
+entity reviews { * id : BIGINT <<PK>> -- product_id : BIGINT <<FK>> -- user_id : BIGINT <<FK>> -- order_id : BIGINT <<FK>> -- rating : INT -- comment : VARCHAR -- created_at : TIMESTAMP }
+users ||--o{ products : sells
+users ||--o{ orders : places
+orders ||--|{ order_items : contains
+products ||--o{ order_items : ordered_as
+users ||--o{ cart_items : owns
+products ||--o{ cart_items : in_cart
+users ||--o{ reviews : writes
+products ||--o{ reviews : receives
+orders ||--o{ reviews : authorizes
+@enduml

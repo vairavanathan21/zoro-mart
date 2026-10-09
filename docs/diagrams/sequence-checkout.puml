@@ -1,0 +1,25 @@
+@startuml
+actor Buyer
+participant Browser
+participant AuthFilter
+participant ApiServlet
+participant OrderService
+participant MarketplaceDAO
+participant HikariCP
+ database H2
+Buyer -> Browser: Click Place Order
+Browser -> ApiServlet: POST /api/v1/orders + session cookie
+ApiServlet -> AuthFilter: session/role validation
+AuthFilter --> ApiServlet: authenticated Buyer
+ApiServlet -> OrderService: checkout(buyerId)
+OrderService -> MarketplaceDAO: read cart and stock
+MarketplaceDAO -> HikariCP: getConnection()
+HikariCP -> H2: SELECT cart/products
+H2 --> MarketplaceDAO: cart lines and stock
+MarketplaceDAO -> H2: INSERT order/order_items; decrement stock; clear cart
+MarketplaceDAO -> H2: COMMIT transaction
+MarketplaceDAO --> OrderService: orderId
+OrderService --> ApiServlet: mock confirmation DTO
+ApiServlet --> Browser: 201 JSON envelope
+Browser --> Buyer: Show order confirmation
+@enduml
